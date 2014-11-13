@@ -1,4 +1,0 @@
-%env %import ${ARGENT_MOLECULE_HOME:-/argent}/molecules/arm-base.common
-
-# Path to source chroot (mandatory)
-%env source_chroot: ${ARGENT_MOLECULE_HOME:-/argent}/sources/armv6l_core-2013
