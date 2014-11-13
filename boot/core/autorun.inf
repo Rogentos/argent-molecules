@@ -1,0 +1,6 @@
+[autorun]
+label=Argent
+open=argent.bat
+action=Launch Virtual Argent
+icon=argent.ico
+
