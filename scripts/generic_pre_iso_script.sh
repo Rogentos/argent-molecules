@@ -20,10 +20,6 @@ if [ -n "${boot_kernel}" ] && [ -f "${boot_kernel}" ]; then
 	cp "${boot_ramfs}" "${CDROOT_DIR}/boot/argent.igz" || exit 1
 fi
 
-if [ "${remaster_type}" = "KDE" ] || [ "${remaster_type}" = "GNOME" ]; then
-	isolinux_source="${ARGENT_MOLECULE_HOME}/remaster/standard_isolinux.cfg"
-	grub_source="${ARGENT_MOLECULE_HOME}/remaster/standard_grub.cfg"
-fi
 cp "${isolinux_source}" "${isolinux_destination}" || exit 1
 cp "${grub_source}" "${grub_destination}" || exit 1
 
