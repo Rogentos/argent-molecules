@@ -7,7 +7,7 @@
 ARGENT_MOLECULE_HOME="${ARGENT_MOLECULE_HOME:-/argent}"
 export ARGENT_MOLECULE_HOME
 
-announce_url="http://torrents.argent.org:8082/announce"
+announce_url="http://torrents.argentlinux.io:8082/announce"
 iso_dirs=(
 	"${ARGENT_MOLECULE_HOME}/iso"
 	"${ARGENT_MOLECULE_HOME}/images"

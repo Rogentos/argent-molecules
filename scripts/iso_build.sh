@@ -277,7 +277,7 @@ safe_run() {
 
 remove_from_mirrors() {
 	local path="${1}"
-	local server="entropy@pkg.argent.org"
+	local server="entropy@pkg.argentlinux.io"
 	local ssh_dir="/argent/rsync"
 	local ssh_path="${server}:${ssh_dir}"
 
@@ -287,12 +287,12 @@ remove_from_mirrors() {
 	fi
 
 	safe_run 10 ssh "${server}" \
-		rm -f "${ssh_dir}/rsync.argent.org/iso/${ISO_DIR}/${path}"
+		rm -f "${ssh_dir}/rsync.argentlinux.io/iso/${ISO_DIR}/${path}"
 }
 
 move_to_mirrors() {
 	local do_push="${ARGENT_MOLECULE_HOME}"/DO_PUSH
-	local server="entropy@pkg.argent.org"
+	local server="entropy@pkg.argentlinux.io"
 	local ssh_dir="/argent/rsync"
 	local ssh_path="${server}:${ssh_dir}"
 
@@ -310,7 +310,7 @@ move_to_mirrors() {
 
 			safe_run 10 rsync -av --partial --bwlimit=2048 \
 				"${ARGENT_MOLECULE_HOME}"/iso_rsync/*"${ISO_TAG}"* \
-				"${ssh_path}/rsync.argent.org/iso/${ISO_DIR}" \
+				"${ssh_path}/rsync.argentlinux.io/iso/${ISO_DIR}" \
 				|| exit 1
 
 			if [ "${ACTION}" = "monthly" ]; then
@@ -318,14 +318,14 @@ move_to_mirrors() {
 				echo "${ISO_TAG}" > "${ARGENT_MOLECULE_HOME}/iso_rsync/${ISO_DIR}/LATEST_IS" || exit 1
 				safe_run 10 rsync -av --partial \
 					"${ARGENT_MOLECULE_HOME}/iso_rsync/${ISO_DIR}/LATEST_IS" \
-					"${ssh_path}/rsync.argent.org/iso/${ISO_DIR}/" \
+					"${ssh_path}/rsync.argentlinux.io/iso/${ISO_DIR}/" \
 					|| exit 1
 			fi
 
 			if [ -n "${CHANGELOG_DATES}" ]; then
 				safe_run 10 rsync -av --partial \
 				"${CHANGELOG_DIR}"/ \
-				"${ssh_path}/rsync.argent.org/iso/${ISO_DIR}/ChangeLogs/"
+				"${ssh_path}/rsync.argentlinux.io/iso/${ISO_DIR}/ChangeLogs/"
 			fi
 
 			safe_run 10 rsync -av --partial \
@@ -515,7 +515,7 @@ mail_success() {
 	echo "Hello there,
 
 New ${ACTION} images tagged as ${ISO_TAG} have been built and pushed to mirrors.
-http://www.argent.org/latest (node/306) will be updated in 24 hours automatically.
+http://www.argentlinux.io/latest (node/306) will be updated in 24 hours automatically.
 
 " | /bin/mail -s "Action required: ${ACTION} ${ISO_TAG} images built" root
 }

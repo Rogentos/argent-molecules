@@ -13,12 +13,12 @@ for repo_conf in /etc/entropy/repositories.conf.d/entropy_*; do
 		echo "skipping ${repo_conf}"
 		continue
 	fi
-	sed -n -e "/^pkg = .*pkg.argent.org/p" -e "/^repo = .*pkg.argent.org/p" \
+	sed -n -e "/^pkg = .*pkg.argentlinux.io/p" -e "/^repo = .*pkg.argentlinux.io/p" \
 		-e "/garr.it/p" -e "/^\[.*\]$/p" -i "${repo_conf}"
 
-	# replace pkg.argent.org with pkg.repo.argent.org to improve
+	# replace pkg.argentlinux.io with pkg.repo.argentlinux.io to improve
 	# build server locality
-	sed -i "s;http://pkg.argent.org;http://pkg.repo.argent.org;g" "${repo_conf}"
+	sed -i "s;http://pkg.argentlinux.io;http://pkg.repo.argentlinux.io;g" "${repo_conf}"
 done
 
 export FORCE_EAPI=2
