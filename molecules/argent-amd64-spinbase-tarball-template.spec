@@ -8,5 +8,5 @@
 # Path to source ISO file (MANDATORY)
 %env source_iso: ${ARGENT_MOLECULE_HOME:-/argent}/iso/Argent_Linux_${ISO_TAG:-DAILY}_amd64_SpinBase.iso
 
-%env release_version: ${ARGENT_RELEASE:-11}
-%env tar_name: Argent_Linux_${ARGENT_RELEASE:-11}_amd64_SpinBase_tarball.tar.gz
+%env release_version: ${ARGENT_RELEASE:-2}
+%env tar_name: Argent_Linux_${ARGENT_RELEASE:-2}_amd64_SpinBase_tarball.tar.gz
