@@ -69,14 +69,6 @@ setup_cpufrequtils() {
 	sd_enable cpufrequtils
 }
 
-setup_argent_mce() {
-	sd_enable argent-mce
-}
-
-setup_argent_steambox() {
-	sd_enable steambox
-}
-
 switch_kernel() {
 	local from_kernel="${1}"
 	local to_kernel="${2}"
@@ -356,13 +348,6 @@ prepare_gnome() {
 		setup_default_xsession "gnome"
 	fi
 
-	setup_argent_mce
-	setup_argent_steambox
-}
-
-prepare_xfceforensic() {
-	setup_default_xsession "xfce"
-	xfceforensic_remove_skel_stuff
 }
 
 prepare_kde() {
@@ -371,8 +356,6 @@ prepare_kde() {
 	# TODO: find a better solution?
 	mv /etc/skel/.config/gtk-3.0/settings.ini._kde_molecule \
 		/etc/skel/.config/gtk-3.0/settings.ini
-	setup_argent_mce
-	setup_argent_steambox
 }
 
 prepare_awesome() {
@@ -388,16 +371,8 @@ prepare_system() {
                 prepare_mate
 	elif [ "${de}" = "e17" ]; then
 		prepare_e17
-	elif [ "${de}" = "xfce" ]; then
-		prepare_xfce
 	elif [ "${de}" = "fluxbox" ]; then
 		prepare_fluxbox
-	elif [ "${de}" = "gnome" ]; then
-		prepare_gnome
-	elif [ "${de}" = "xfceforensic" ]; then
-		prepare_xfceforensic
-	elif [ "${de}" = "kde" ]; then
-		prepare_kde
 	elif [ "${de}" = "awesome" ]; then
 		prepare_awesome
 	fi

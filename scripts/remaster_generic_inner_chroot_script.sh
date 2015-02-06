@@ -14,7 +14,7 @@ for repo_conf in /etc/entropy/repositories.conf.d/entropy_*; do
 		continue
 	fi
 	sed -n -e "/^pkg = .*pkg.argentlinux.io/p" -e "/^repo = .*pkg.argentlinux.io/p" \
-		-e "/garr.it/p" -e "/^\[.*\]$/p" -i "${repo_conf}"
+		-e "/other.source/p" -e "/^\[.*\]$/p" -i "${repo_conf}"
 
 	# replace pkg.argentlinux.io with pkg.repo.argentlinux.io to improve
 	# build server locality
