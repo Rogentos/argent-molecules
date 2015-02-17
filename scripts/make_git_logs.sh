@@ -16,12 +16,12 @@ TO_DATE="${3}"
 BASE_DIR="${ARGENT_MOLECULE_HOME:-${HOME}}"
 
 GIT_REPOSITORIES=(
-    "git://github.com/Argent/for-gentoo.git master upstream-overlay"
-    "git://github.com/Argent/argent-distro.git master argent-overlay"
-    "git://github.com/Argent/molecules.git master argent-images"
-    "git://github.com/Argent/entropy.git master entropy"
-    "git://github.com/Argent/build.git master source-package-builds"
-    "git://github.com/Argent/anaconda.git master installer"
+    "git://github.com/Rogentos/argent-server.git master upstream-overlay"
+    "git://github.com/Rogentos/argent-distro.git master argent-overlay"
+    "git://github.com/Rogentos/argent-molecules.git master argent-images"
+    "git://github.com/Rogentos/entropy.git master entropy"
+    "git://github.com/Rogentos/build.git master source-package-builds"
+    "git://github.com/Rogentos/argent-anaconda.git master installer"
 )
 
 safe_run() {

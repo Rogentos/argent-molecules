@@ -18,7 +18,7 @@ done
 
 echo -5 | equo conf update
 
-rm /var/lib/entropy/client/database/*/argentlinux.org -rf
+rm /var/lib/entropy/client/database/*/argentlinux.io -rf
 rm /var/lib/entropy/client/database/*/argent-weekly -rf
 equo rescue vacuum
 # cleanup logs and cache

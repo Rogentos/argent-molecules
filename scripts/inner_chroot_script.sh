@@ -138,9 +138,9 @@ for repo_conf in /etc/entropy/repositories.conf.d/entropy_*.example; do
 	cp "${repo_conf}" "${new_repo_conf}"
 done
 
-# copy Portage config from argentlinux.org entropy repo to system
+# copy Portage config from argentlinux.io entropy repo to system
 for conf in package.mask package.unmask package.keywords make.conf package.use; do
-	repo_path=/var/lib/entropy/client/database/*/argentlinux.org/standard
+	repo_path=/var/lib/entropy/client/database/*/argentlinux.io/standard
 	repo_conf=$(ls -1 ${repo_path}/*/*/${conf} | sort | tail -n 1 2>/dev/null)
 	if [ -n "${repo_conf}" ]; then
 		target_path="/etc/portage/${conf}"
@@ -152,7 +152,7 @@ done
 # split config files
 for conf in 00-argent.package.use 00-argent.package.mask \
 	00-argent.package.unmask 00-argent.package.keywords; do
-	repo_path=/var/lib/entropy/client/database/*/argentlinux.org/standard
+	repo_path=/var/lib/entropy/client/database/*/argentlinux.io/standard
 	repo_conf=$(ls -1 ${repo_path}/*/*/${conf} | sort | tail -n 1 2>/dev/null)
 	if [ -n "${repo_conf}" ]; then
 		target_path="/etc/portage/${conf/00-argent.}/${conf}"

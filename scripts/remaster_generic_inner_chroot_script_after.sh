@@ -271,7 +271,7 @@ setup_installed_packages() {
 	echo -5 | equo conf update
 
 	echo "Vacuum cleaning client db"
-	rm /var/lib/entropy/client/database/*/argentlinux.org -rf
+	rm /var/lib/entropy/client/database/*/argentlinux.io -rf
 	rm /var/lib/entropy/client/database/*/argent-weekly -rf
 	equo rescue vacuum
 

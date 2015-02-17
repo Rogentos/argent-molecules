@@ -3,17 +3,17 @@
 if [ -z "${BUILDING_DAILY}" ]; then
 	# only the first occurence
 	repo_conf="${CHROOT_DIR}/etc/entropy/repositories.conf"
-	sed -i "/^officialrepositoryid/ s/argentlinux.org/argent-weekly/" "${repo_conf}" || exit 1
-	sed -i "/^official-repository-id/ s/argentlinux.org/argent-weekly/" "${repo_conf}" || exit 1
+	sed -i "/^officialrepositoryid/ s/argentlinux.io/argent-weekly/" "${repo_conf}" || exit 1
+	sed -i "/^official-repository-id/ s/argentlinux.io/argent-weekly/" "${repo_conf}" || exit 1
 
 	# new style repository config files (inside
 	# repositories.conf.d/ directory)
 	repo_conf_d="${CHROOT_DIR}/etc/entropy/repositories.conf.d"
-	src_conf="${repo_conf_d}/entropy_argentlinux.org"
+	src_conf="${repo_conf_d}/entropy_argentlinux.io"
 	dst_conf="${repo_conf_d}/entropy_argent-weekly"
 	if [ -f "${src_conf}" ]; then
 		mv "${src_conf}" "${dst_conf}" || exit 1
-		sed -i "/^\[argentlinux.org\]$/ s/argentlinux.org/argent-weekly/" \
+		sed -i "/^\[argentlinux.io\]$/ s/argentlinux.io/argent-weekly/" \
 			"${dst_conf}" || exit 1
 	fi
 fi
