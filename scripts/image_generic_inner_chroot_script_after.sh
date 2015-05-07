@@ -63,7 +63,7 @@ kernel ${kernel_bin} root=/dev/sda1
 equo query list installed -qv > /etc/argent-pkglist
 
 echo "Vacuum cleaning client db"
-rm /var/lib/entropy/client/database/*/argentlinux.io -rf
+rm /var/lib/entropy/client/database/*/argentlinux -rf
 rm /var/lib/entropy/client/database/*/argent-weekly -rf
 equo rescue vacuum
 

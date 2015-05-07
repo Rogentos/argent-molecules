@@ -7,6 +7,25 @@
 ARGENT_MOLECULE_HOME="${ARGENT_MOLECULE_HOME:-/argent}"
 export ARGENT_MOLECULE_HOME
 
+boot_dir="${CHROOT_DIR}/boot"
+cdroot_boot_dir="${CDROOT_DIR}/boot"
+
+kernels=( "${boot_dir}"/kernel-* )
+# get the first one and see if it exists
+kernel="${kernels[0]}"
+if [ ! -f "${kernel}" ]; then
+        echo "No kernels in ${boot_dir}" >&2
+        exit 1
+fi
+
+initramfss=( "${boot_dir}"/initramfs-genkernel-* )
+# get the first one and see if it exists
+initramfs="${initramfss[0]}"
+if [ ! -f "${initramfs}" ]; then
+        echo "No initramfs in ${boot_dir}" >&2
+        exit 1
+fi
+
 remaster_type="${1}"
 isolinux_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_isolinux.cfg"
 grub_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_grub.cfg"
@@ -30,6 +49,7 @@ cp "${grub_source}" "${grub_destination}" || exit 1
 # generate EFI GRUB
 "${ARGENT_MOLECULE_HOME}"/scripts/make_grub_efi.sh || exit 1
 
+#I'm not sure if this variable comes from at least something
 ver="${RELEASE_VERSION}"
 sed -i "s/__VERSION__/${ver}/g" "${isolinux_destination}" || exit 1
 sed -i "s/__FLAVOUR__/${remaster_type}/g" "${isolinux_destination}" || exit 1
