@@ -27,8 +27,8 @@ if [ ! -f "${initramfs}" ]; then
 fi
 
 # copy kernel and initramfs
-cp "${kernel}" "${cdroot_boot_dir}"/argent || exit 1
-cp "${initramfs}" "${cdroot_boot_dir}"/argent.igz || exit 1
+#cp "${kernel}" "${cdroot_boot_dir}"/argent || exit 1
+#cp "${initramfs}" "${cdroot_boot_dir}"/argent.igz || exit 1
 
 # Write build info
 build_date=$(date)
