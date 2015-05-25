@@ -92,8 +92,6 @@ setup_displaymanager() {
 		sd_enable lxdm
 	elif [ -n "$(equo match --installed x11-misc/lightdm-base -qv)" ]; then
 		sd_enable lightdm
-	elif [ -n "$(equo match --installed kde-base/kdm -qv)" ]; then
-		sd_enable kdm
 	else
 		sd_enable xdm
 	fi
@@ -271,7 +269,7 @@ setup_installed_packages() {
 	echo -5 | equo conf update
 
 	echo "Vacuum cleaning client db"
-	rm /var/lib/entropy/client/database/*/argentlinux.io -rf
+	rm /var/lib/entropy/client/database/*/argentlinux -rf
 	rm /var/lib/entropy/client/database/*/argent-weekly -rf
 	equo rescue vacuum
 
