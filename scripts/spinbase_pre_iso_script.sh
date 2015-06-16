@@ -29,6 +29,8 @@ fi
 # copy kernel and initramfs
 #cp "${kernel}" "${cdroot_boot_dir}"/argent || exit 1
 #cp "${initramfs}" "${cdroot_boot_dir}"/argent.igz || exit 1
+cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/argent "${cdroot_boot_dir}"/argent || exit 1
+cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/argent.igz "${cdroot_boot_dir}"/argent.igz || exit 1
 
 # Write build info
 build_date=$(date)

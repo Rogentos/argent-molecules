@@ -47,6 +47,7 @@ basic_environment_setup() {
 	eselect mesa set --auto
 
 	sd_disable argent-mce
+	sd_enable argentlive
 
 	# setup avahi
 	sd_enable avahi-daemon
@@ -92,6 +93,8 @@ setup_displaymanager() {
 		sd_enable lxdm
 	elif [ -n "$(equo match --installed x11-misc/lightdm-base -qv)" ]; then
 		sd_enable lightdm
+	elif [ -n "$(equo match --instaled x11-misc/slim -qv)" ]; then
+		sd_enable slim
 	else
 		sd_enable xdm
 	fi
