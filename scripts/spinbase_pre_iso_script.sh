@@ -32,8 +32,6 @@ fi
 cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/argent "${cdroot_boot_dir}"/argent || exit 1
 cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/argent.igz "${cdroot_boot_dir}"/argent.igz || exit 1
 
-mv "${CHROOT_DIR}"/lib/modules/3.14.0-argent "${CHROOT_DIR}"/lib/modules/3.14.0-argent_backup
-
 # Write build info
 build_date=$(date)
 build_file="${CDROOT_DIR}"/BUILD_INFO
