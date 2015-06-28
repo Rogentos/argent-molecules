@@ -114,8 +114,8 @@ eselect opengl set xorg-x11 &> /dev/null
 # touch /etc/asound.state
 touch /etc/asound.state
 
-type -f update-pciids 2> /dev/null && update-pciids
-type -f update-usbids 2> /dev/null && update-usbids
+update-pciids
+update-usbids
 
 echo -5 | etc-update
 mount -t proc proc /proc
