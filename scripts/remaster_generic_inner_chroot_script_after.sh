@@ -105,6 +105,7 @@ setup_default_xsession() {
 	echo "[Desktop]" > /etc/skel/.dmrc
 	echo "Session=${sess}" >> /etc/skel/.dmrc
 	ln -sf "${sess}.desktop" /usr/share/xsessions/default.desktop
+	rm /etc/entropy/repositories.conf.d/*sabayon*
 }
 
 setup_networkmanager() {
@@ -357,6 +358,7 @@ prepare_kde() {
 	# TODO: find a better solution?
 	mv /etc/skel/.config/gtk-3.0/settings.ini._kde_molecule \
 		/etc/skel/.config/gtk-3.0/settings.ini
+	#because we use upstream equo
 }
 
 prepare_awesome() {

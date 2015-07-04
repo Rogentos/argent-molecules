@@ -6,7 +6,7 @@
 release_desc: amd64 Minimal
 
 # Path to source ISO file (MANDATORY)
-%env source_iso: ${ARGENT_MOLECULE_HOME:-/argent}/iso/Argent_Linux_${ISO_TAG:-DAILY}_amd64_SpinBase.iso
+%env source_iso: ${ARGENT_MOLECULE_HOME:-/argent}/iso/Argent_Linux_2_amd64_SpinBase.iso
 
 # Destination ISO image name, call whatever you want.iso, not mandatory
 %env destination_iso_image_name: Argent_Linux_${ARGENT_RELEASE:-2}_amd64_Minimal.iso
