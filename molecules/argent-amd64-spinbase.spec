@@ -4,7 +4,7 @@
 
 # Release Version
 # Keep this here, otherwise daily builds automagic won't work
-%env release_version: ${ARGENT_RELEASE:-2}
+release_version: 2
 
 # Release Version string description
 release_desc: amd64 SpinBase
@@ -12,6 +12,10 @@ release_desc: amd64 SpinBase
 # Source chroot directory, where files are pulled from
 %env source_chroot: ${ARGENT_MOLECULE_HOME:-/argent}/sources/amd64_core-2010
 
+%env destination_chroot: ${ARGENT_MOLECULE_HOME:-/argent}/chroots/default
+%env inner_chroot_script: ${ARGENT_MOLECULE_HOME:-/argent}/scripts/inner_chroot_script.sh
+%env destination_livecd_root: ${ARGENT_MOLECULE_HOME:-/argent}/chroots/default
+
 # Destination ISO image name, call whatever you want.iso, not mandatory
 # Keep this here and set, otherwise daily builds automagic won't work
-%env destination_iso_image_name: Argent_Linux_${ARGENT_RELEASE:-2}_amd64_SpinBase.iso
+%env destination_iso_image_name: Argent_Linux_2_amd64_SpinBase.iso
