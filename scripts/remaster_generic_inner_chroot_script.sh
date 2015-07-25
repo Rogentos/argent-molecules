@@ -7,21 +7,44 @@
 rm -f /var/run/entropy/entropy.lock
 
 # disable all mirrors but GARR
-for repo_conf in /etc/entropy/repositories.conf.d/entropy_*; do
+#for repo_conf in /etc/entropy/repositories.conf.d/entropy_*; do
 	# skip .example files
-	if [[ "${repo_conf}" =~ .*\.example$ ]]; then
-		echo "skipping ${repo_conf}"
-		continue
-	fi
-	sed -n -e "/^pkg = .*pkg.argentlinux.io/p" -e "/^repo = .*pkg.argentlinux.io/p" \
-		-e "/other.source/p" -e "/^\[.*\]$/p" -i "${repo_conf}"
+#	if [[ "${repo_conf}" =~ .*\.example$ ]]; then
+#		echo "skipping ${repo_conf}"
+#		continue
+#	fi
+#	sed -n -e "/^pkg = .*pkg.argentlinux.io/p" -e "/^repo = .*pkg.argentlinux.io/p" \
+#		-e "/other.source/p" -e "/^\[.*\]$/p" -i "${repo_conf}"
 
 	# replace pkg.argentlinux.io with pkg.repo.argentlinux.io to improve
 	# build server locality
-	sed -i "s;http://pkg.argentlinux.io;http://pkg.repo.argentlinux.io;g" "${repo_conf}"
-done
+#	sed -i "s;http://pkg.argentlinux.io;http://pkg.repo.argentlinux.io;g" "${repo_conf}"
+#done
+
+if [ -f "/etc/entropy/repositories.conf.d/entropy_argentlinux.example" ]; then
+        mv "${EREPO}/entropy_argentlinux.example" "${EREPO}/entropy_argentlinux"
+fi
+
+if [ -f "${EREPO}/entropy_argent-stable" ]; then
+        mv "${EREPO}/entropy_argent-stable" "${EREPO}/entropy_argent-stable.example"
+fi
 
 export FORCE_EAPI=2
+
+LOC=$(pwd)
+EREPO=/etc/entropy/repositories.conf.d
+if [ -f "/etc/entropy/repositories.conf.d/entropy_argentlinux.example" ]; then
+        mv "${EREPO}/entropy_argentlinux.example" "${EREPO}/entropy_argentlinux"
+fi
+
+if [ -f "${EREPO}/entropy_argent-weekly" ]; then
+        mv "${EREPO}/entropy_argent-weekly" "${EREPO}/entropy_argent-weekly.example"
+fi
+
+cd "$EREPO"
+equo repo mirrorsort argentlinux
+equo update
+
 updated=0
 for ((i=0; i < 42; i++)); do
 	equo update && {
@@ -37,3 +60,5 @@ done
 if [ "${updated}" = "0" ]; then
 	exit 1
 fi
+
+mkdir -p /etc/entropy/packages/packages.mask.d/

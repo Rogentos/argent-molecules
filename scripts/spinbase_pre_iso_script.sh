@@ -40,10 +40,12 @@ echo "Built on: ${build_date}" >> "${build_file}" || exit 1
 
 ver="${RELEASE_VERSION}"
 isolinux_dest="${CDROOT_DIR}/isolinux/txt.cfg"
+syslinux_dest="${CDROOT_DIR}/syslinux/txt.cfg"
 isolinux_dest_txt="${CDROOT_DIR}/isolinux/isolinux.txt"
+syslinux_dest_txt="${CDROOT_DIR}/syslinux/syslinux.txt"
 grub_dest="${CDROOT_DIR}/boot/grub/grub.cfg"
 
-for path in "${isolinux_dest}" "${isolinux_dest_txt}" "${grub_dest}"; do
+for path in "${isolinux_dest}" "${isolinux_dest_txt}" "${syslinux_dest}" "${syslinux_dest_txt}" "${grub_dest}"; do
 	sed -i "s/__VERSION__/${ver}/g" "${path}" || exit 1
 	sed -i "s/__FLAVOUR__/${remaster_type}/g" "${path}" || exit 1
 done
@@ -68,6 +70,7 @@ fi
 isolinux_img="${CHROOT_DIR}/usr/share/backgrounds/isolinux/back.jpg"
 if [ -f "${isolinux_img}" ]; then
 	cp "${isolinux_img}" "${CDROOT_DIR}/isolinux/" || exit 1
+	cp "${isolinux_img}" "${CDROOT_DIR}/syslinux/"
 fi
 
 # Generate livecd.squashfs.md5
