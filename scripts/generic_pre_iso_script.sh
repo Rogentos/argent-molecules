@@ -28,8 +28,9 @@ initramfs="${initramfss[0]}"
 
 remaster_type="${1}"
 isolinux_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_isolinux.cfg"
-grub_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_grub.cfg"
+grub_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_grub.cfg"i
 isolinux_destination="${CDROOT_DIR}/isolinux/txt.cfg"
+syslinux_destination="${CDROOT_DIR}/syslinux/txt.cfg"
 grub_destination="${CDROOT_DIR}/boot/grub/grub.cfg"
 
 #boot_kernel=$(find "${CHROOT_DIR}/boot" -name "kernel-*" | sort | head -n 1)
@@ -55,6 +56,8 @@ cp "${grub_source}" "${grub_destination}" || exit 1
 ver="${RELEASE_VERSION}"
 sed -i "s/__VERSION__/${ver}/g" "${isolinux_destination}" || exit 1
 sed -i "s/__FLAVOUR__/${remaster_type}/g" "${isolinux_destination}" || exit 1
+sed -i "s/__VERSION__/${ver}/g" "${syslinux_destination}" || exit 1
+sed -i "s/__FLAVOUR__/${remaster_type}/g" "${syslinux_destination}" || exit 1
 sed -i "s/__VERSION__/${ver}/g" "${grub_destination}" || exit 1
 sed -i "s/__FLAVOUR__/${remaster_type}/g" "${grub_destination}" || exit 1
 
@@ -71,6 +74,7 @@ fi
 isolinux_img="${CHROOT_DIR}/usr/share/backgrounds/isolinux/back.jpg"
 if [ -f "${isolinux_img}" ]; then
 	cp "${isolinux_img}" "${CDROOT_DIR}/isolinux/" || exit 1
+	cp "${syslinux_img}" "${CDROOT_DIR}/syslinux/" || exit 1
 fi
 
 # Generate livecd.squashfs.md5
