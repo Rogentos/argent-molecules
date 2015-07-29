@@ -29,8 +29,14 @@ initramfs="${initramfss[0]}"
 # copy kernel and initramfs
 #cp "${kernel}" "${cdroot_boot_dir}"/argent || exit 1
 #cp "${initramfs}" "${cdroot_boot_dir}"/argent.igz || exit 1
-cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc "${cdroot_boot_dir}"/argent || exit 1
-cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+
+if [ $(uname -m) = "x86_64" ]; then
+        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc "${cdroot_boot_dir}"/argent || exit 1
+        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+elif [ $(uname -m) = "i686" ]; then
+        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86 "${cdroot_boot_dir}"/argent || exit 1
+        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+fi
 
 # Write build info
 build_date=$(date)
