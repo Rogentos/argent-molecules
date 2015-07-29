@@ -28,7 +28,7 @@ initramfs="${initramfss[0]}"
 
 remaster_type="${1}"
 isolinux_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_isolinux.cfg"
-grub_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_grub.cfg"i
+grub_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_grub.cfg"
 isolinux_destination="${CDROOT_DIR}/isolinux/txt.cfg"
 syslinux_destination="${CDROOT_DIR}/syslinux/txt.cfg"
 grub_destination="${CDROOT_DIR}/boot/grub/grub.cfg"
@@ -42,6 +42,7 @@ elif [ $(uname -m) = "i686" ]; then
 fi
 
 cp "${isolinux_source}" "${isolinux_destination}" || exit 1
+cp "${isolinux_source}" "${syslinux_destination}" || exit 1
 cp "${grub_source}" "${grub_destination}" || exit 1
 
 # Generate Language and Keyboard menus for GRUB-2
