@@ -189,11 +189,7 @@ setup_proprietary_gfx_drivers() {
 	mkdir -p "${cd_dir}" || return 1
 	equo download --nodeps "${pkgs[@]}" || return 1
 
-	OLDIFS=${IFS}
-	IFS='
-'
 	local data=( $(equo match --quiet --showdownload "${pkgs[@]}") )
-	IFS=${OLDIFS}
 	for ts in "${data[@]}"; do
 		tp=( ${ts} )
 		pkg_f="${pkgs_dir}/${tp[1]}"
