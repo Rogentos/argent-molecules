@@ -12,4 +12,4 @@ release_desc: amd64 Awesome
 %env source_iso: ${ARGENT_MOLECULE_HOME:-/argent}/iso/Argent_Linux_${ISO_TAG:-DAILY}_amd64_SpinBase.iso
 
 # Destination ISO image name, call whatever you want.iso, not mandatory
-%env destination_iso_image_name: Argent_Linux_${ARGENT_RELEASE:-2}_amd64_Awesome.iso
+%env destination_iso_image_name: Argent_Linux_${ARGENT_RELEASE:-2}_amd64_GRAPHIC.iso
