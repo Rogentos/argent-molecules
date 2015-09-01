@@ -303,7 +303,6 @@ prepare_generic() {
 	setup_networkmanager
 	setup_displaymanager
 	setup_ncpufreqd
-	has_proprietary_drivers && setup_proprietary_gfx_drivers || setup_oss_gfx_drivers
 }
 
 prepare_lxde() {
