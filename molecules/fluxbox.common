@@ -53,7 +53,6 @@ packages_to_add:
 	sys-block/parted,
 	sys-power/ncpufreqd,
 	www-client/lynx,
-	x11-themes/gnome-icon-theme,
 	x11-themes/fluxbox-styles-fluxmod,
 	x11-wm/fluxbox,
 
