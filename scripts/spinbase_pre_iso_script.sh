@@ -34,6 +34,8 @@ elif [ $(uname -m) = "i686" ]; then
         cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86.igz "${cdroot_boot_dir}"/argent.igz || exit 1
 fi
 
+
+remaster_type="${1}"
 # Write build info
 build_date=$(date)
 build_file="${CDROOT_DIR}"/BUILD_INFO
