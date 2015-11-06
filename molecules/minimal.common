@@ -43,6 +43,7 @@ extra_mksquashfs_parameters: -comp xz -Xbcj x86
 
 packages_to_add:
 	@wireless,
+	app-misc/argent-live,
 	app-text/pastebunz,
 	x11-misc/slim,
 	media-gfx/feh,
