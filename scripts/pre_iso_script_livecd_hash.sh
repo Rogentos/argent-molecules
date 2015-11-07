@@ -17,7 +17,7 @@ if [ -f "${LIVECD_SQUASHFS}" ]; then
 	squash_name=$(basename "${LIVECD_SQUASHFS}")
 	pushd "${squash_dir}" > /dev/null && \
 		sha256sum "${squash_name}" > "${squash_name}.sha256" && \
-		popd > /dev/null
+		popd > /dev/null || return 1
 fi
 
 # files inside /boot now
@@ -31,7 +31,7 @@ if [ -d "${CDROOT_DIR}/boot" ]; then
 			boot_name=$(basename "${bootfile}")
 			pushd "${boot_dir}" > /dev/null && \
 				sha256sum "${boot_name}" > "${boot_name}.sha256" && \
-				popd > /dev/null
+				popd > /dev/null || return 1
 		fi
 	done
 fi
@@ -39,4 +39,4 @@ fi
 # move cdupdate.sh in place
 cp "${ARGENT_MOLECULE_HOME}/scripts/cdupdate.sh" "${CDROOT_DIR}/cdupdate.sh" && \
 	chmod +x "${CDROOT_DIR}/cdupdate.sh" && \
-	chown root:root "${CDROOT_DIR}/cdupdate.sh"
+	chown root:root "${CDROOT_DIR}/cdupdate.sh" || return 1
