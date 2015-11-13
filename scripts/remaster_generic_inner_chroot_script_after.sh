@@ -50,11 +50,11 @@ basic_environment_setup() {
 	sd_enable argentlive
 
 	# setup avahi
-	sd_enable avahi-daemon
+	#sd_enable avahi-daemon
 
 	# setup printing
-	sd_enable cups
-	sd_enable cups-browsed
+	#sd_enable cups
+	#sd_enable cups-browsed
 
 	# Create a default "games" group so that
 	# the default user will be added to it during

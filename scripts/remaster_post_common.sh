@@ -11,11 +11,11 @@ if [ -z "${BUILDING_DAILY}" ]; then
 	repo_conf_d="${CHROOT_DIR}/etc/entropy/repositories.conf.d"
 	src_conf="${repo_conf_d}/entropy_argentlinux"
 	dst_conf="${repo_conf_d}/entropy_argent-weekly"
-	if [ -f "${src_conf}" ]; then
-		mv "${src_conf}" "${dst_conf}" || exit 1
-		sed -i "/^\[argentlinux\]$/ s/argentlinux/argent-weekly/" \
-			"${dst_conf}" || exit 1
-	fi
+	#if [ -f "${src_conf}" ]; then
+	#	mv "${src_conf}" "${dst_conf}" || exit 1
+	#	sed -i "/^\[argentlinux\]$/ s/argentlinux/argent-weekly/" \
+	#		"${dst_conf}" || exit 1
+	#fi
 fi
 
 # remove entropy hwash
