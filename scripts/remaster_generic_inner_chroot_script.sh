@@ -21,10 +21,6 @@ rm -f /var/run/entropy/entropy.lock
 #	sed -i "s;http://pkg.argentlinux.io;http://pkg.repo.argentlinux.io;g" "${repo_conf}"
 #done
 
-if [ -f "/etc/entropy/repositories.conf.d/entropy_argentlinux.example" ]; then
-        mv "${EREPO}/entropy_argentlinux.example" "${EREPO}/entropy_argentlinux"
-fi
-
 if [ -f "${EREPO}/entropy_argent-stable" ]; then
         mv "${EREPO}/entropy_argent-stable" "${EREPO}/entropy_argent-stable.example"
 fi

@@ -96,8 +96,6 @@ sd_enable cdeject
 SYSTEMD_SERVICES=(
 	"NetworkManager"
 	"argentlive"
-	"installer-text"
-	"installer-gui"
 )
 for srv in "${SYSTEMD_SERVICES[@]}"; do
 	sd_enable "${srv}"
