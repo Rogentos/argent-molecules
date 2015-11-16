@@ -117,7 +117,7 @@ if [ -d "${x86_64_EFI_DIR}" ]; then
 				|| exit 1
 elif [ -d "${i386_EFI_DIR}" ]; then
 	create_efi_grub_image "${i386_EFI_DIR_PREFIX}" \
-				"boota32.efi" \
+				"bootia32.efi" \
 				"i386-efi" \
 				"${i386_EFI_DIR}" \
 				|| exit 1
@@ -141,7 +141,7 @@ cp "${CHROOT_DIR}/usr/share/grub/default-splash.png" "${GRUB_BOOT_DIR}"/ \
 # now setup SecureBoot for x86_64 using shim:
 # See: http://mjg59.dreamwidth.org/20303.html
 efi_x86_64_file="${EFI_BOOT_DIR}"/bootx64.efi
-efi_i386_file="${EFI_BOOT_DIR}"/boota32.efi
+efi_i386_file="${EFI_BOOT_DIR}"/bootia32.efi
 grub_efi_file="${EFI_BOOT_DIR}"/grubx64.efi
 efi_img="${GRUB_BOOT_DIR}"/efi.img
 shim_dir="${ARGENT_MOLECULE_HOME}"/boot/shim-uefi-secure-boot
