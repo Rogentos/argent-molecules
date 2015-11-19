@@ -13,26 +13,31 @@ cdroot_boot_dir="${CDROOT_DIR}/boot"
 kernels=( "${boot_dir}"/kernel-* )
 # get the first one and see if it exists
 kernel="${kernels[0]}"
-#if [ ! -f "${kernel}" ]; then
-#	echo "No kernels in ${boot_dir}" >&2
-#	exit 1
-#fi
+if [ ! -f "${kernel}" ]; then
+	echo "No kernels in ${boot_dir}" >&2
+	exit 1
+fi
 
 initramfss=( "${boot_dir}"/initramfs-genkernel-* )
 # get the first one and see if it exists
 initramfs="${initramfss[0]}"
-#if [ ! -f "${initramfs}" ]; then
-#	echo "No initramfs in ${boot_dir}" >&2
-#	exit 1
-#fi
-
-if [ $(uname -m) = "x86_64" ]; then
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc "${cdroot_boot_dir}"/argent || exit 1
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc.igz "${cdroot_boot_dir}"/argent.igz || exit 1
-elif [ $(uname -m) = "i686" ]; then
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86 "${cdroot_boot_dir}"/argent || exit 1
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+if [ ! -f "${initramfs}" ]; then
+	echo "No initramfs in ${boot_dir}" >&2
+	exit 1
 fi
+
+# we are now copying the installed kernel and initramfs
+
+cp "${kernel}" "${cdroot_boot_dir}"/argent || exit 1
+cp "${initramfs}" "${cdroot_boot_dir}"/argent.igz || exit 1
+
+#3if [ $(uname -m) = "x86_64" ]; then
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc "${cdroot_boot_dir}"/argent || exit 1
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+#elif [ $(uname -m) = "i686" ]; then
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86 "${cdroot_boot_dir}"/argent || exit 1
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+#fi
 
 
 remaster_type="${1}"
