@@ -156,23 +156,23 @@ argent_cert="${shim_dir}"/argent.crt
 
 if [ -f "${efi_x86_64_file}" ] || [ -f "${efi_i386_file}" ]; then
 
-	if [ -f "${efi_x86_64_file}" ] && [ -f "${sbsign_private_key}" ]; then
-		mv "${efi_x86_64_file}" "${grub_efi_file}" || exit 1
-		cp "${shim_data_dir}"/shim.efi "${efi_x86_64_file}" || exit 1
-		cp "${shim_data_dir}"/MokManager.efi "${EFI_BOOT_DIR}"/ || exit 1
+	#if [ -f "${efi_x86_64_file}" ] && [ -f "${sbsign_private_key}" ]; then
+	#	mv "${efi_x86_64_file}" "${grub_efi_file}" || exit 1
+	#	cp "${shim_data_dir}"/shim.efi "${efi_x86_64_file}" || exit 1
+	#	cp "${shim_data_dir}"/MokManager.efi "${EFI_BOOT_DIR}"/ || exit 1
 
 		# Copy the Argent SecureBoot certificate to a nice dir
-		mkdir -p "${CDROOT_DIR}"/SecureBoot || exit 1
-		cp "${argent_der}" "${CDROOT_DIR}"/SecureBoot/ || exit 1
+	#	mkdir -p "${CDROOT_DIR}"/SecureBoot || exit 1
+	#	cp "${argent_der}" "${CDROOT_DIR}"/SecureBoot/ || exit 1
 
 		# Sign
-		sbsign --key "${sbsign_private_key}" --cert "${argent_cert}" \
-			--output "${grub_efi_file}.signed" \
-			"${grub_efi_file}" || exit 1
-		mv "${grub_efi_file}.signed" "${grub_efi_file}" || exit 1
-	elif [ ! -f "${sbsign_private_key}" ]; then
-		echo "No private SecureBoot key file found at ${sbsign_private_key}" >&2
-	fi
+	#	sbsign --key "${sbsign_private_key}" --cert "${argent_cert}" \
+	#		--output "${grub_efi_file}.signed" \
+	#		"${grub_efi_file}" || exit 1
+	#	mv "${grub_efi_file}.signed" "${grub_efi_file}" || exit 1
+	#elif [ ! -f "${sbsign_private_key}" ]; then
+	#	echo "No private SecureBoot key file found at ${sbsign_private_key}" >&2
+	#fi
 
 	# -- end of SecureBoot --
 	# UEFI is currently only supported in x86_64
