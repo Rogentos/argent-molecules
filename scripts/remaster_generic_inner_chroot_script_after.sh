@@ -105,7 +105,6 @@ setup_default_xsession() {
 	echo "[Desktop]" > /etc/skel/.dmrc
 	echo "Session=${sess}" >> /etc/skel/.dmrc
 	ln -sf "${sess}.desktop" /usr/share/xsessions/default.desktop
-	rm /etc/entropy/repositories.conf.d/*sabayon*
 }
 
 setup_networkmanager() {
