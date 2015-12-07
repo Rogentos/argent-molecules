@@ -21,6 +21,7 @@ mkdir -p "${GRUB_BOOT_DIR}" || exit 1
 mkdir -p "${GRUB_LOCALE_DIR}" || exit 1
 
 x86_64_EFI_DIR_PREFIX="/usr/lib/grub/x86_64-efi"
+grub_i386pc_dir="/usr/lib/grub/i386-pc/"
 i386_EFI_DIR_PREFIX="/usr/lib/grub/i386-efi"
 x86_64_EFI_DIR="${CHROOT_DIR}${x86_64_EFI_DIR_PREFIX}"
 i386_EFI_DIR="${CHROOT_DIR}${i386_EFI_DIR_PREFIX}"
@@ -102,6 +103,7 @@ create_efi_grub_image() {
 
 	mv "${CHROOT_DIR}"/"${image_name}" "${EFI_BOOT_DIR}/" || return 1
 	cp -Rp "${grub_efi_dir}" "${GRUB_BOOT_DIR}/" || return 1
+	cp -Rp "${grub_i386pc_dir}" "${GRUB_BOOT_DIR}/" || return 1
 
 	# cleanup
 	rm -rf "${memdisk_dir}" "${memdisk_file}"
