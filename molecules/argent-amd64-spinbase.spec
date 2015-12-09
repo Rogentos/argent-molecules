@@ -10,7 +10,7 @@ release_version: 2
 release_desc: amd64 SpinBase
 
 # Source chroot directory, where files are pulled from
-%env source_chroot: ${ARGENT_MOLECULE_HOME:-/argent}/sources/amd64_core-2010
+%env source_chroot: ${ARGENT_MOLECULE_HOME:-/argent}/sources/amd64_core-2015
 
 %env destination_chroot: ${ARGENT_MOLECULE_HOME:-/argent}/chroots/default
 %env inner_chroot_script: ${ARGENT_MOLECULE_HOME:-/argent}/scripts/inner_chroot_script.sh
