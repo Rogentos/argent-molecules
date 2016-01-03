@@ -8,8 +8,6 @@ packages_to_add:
 	sys-apps/gpu-detector,
 	@fluxbox,
 	app-misc/argent-skel,
-	app-misc/anaconda-runtime-gui,
-	app-admin/anaconda-gui,
 	dev-python/libgnomecanvas-python,
 	media-fonts/ttf-bitstream-vera,
 	media-fonts/dejavu,
