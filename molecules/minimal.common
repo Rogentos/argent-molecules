@@ -42,19 +42,19 @@ extra_mksquashfs_parameters: -comp xz -Xbcj x86
 %env %import ${ARGENT_MOLECULE_HOME:-/argent}/molecules/graphic-environment.common
 
 packages_to_add:
-	@wireless,
-	app-misc/argent-live,
-	app-text/pastebunz,
-	x11-misc/slim,
-	media-gfx/feh,
-	net-dialup/ppp,
-	net-dialup/rp-pppoe,
-	net-irc/irssi,
-	net-misc/tightvnc,
-	sys-block/parted,
-	sys-power/ncpufreqd,
-	www-client/lynx,
-	x11-themes/gnome-icon-theme
+        @wireless,
+        app-misc/argent-live,
+        app-text/pastebunz,
+        media-gfx/feh,
+        net-dialup/ppp,
+        net-dialup/rp-pppoe,
+        net-irc/irssi,
+        net-misc/tigervnc,
+        sys-block/parted,
+        sys-power/ncpufreqd,
+        www-client/lynx,
+        x11-misc/lightdm,
+        x11-themes/gnome-icon-theme
 
 packages_to_remove:
 	dev-db/mariadb,
