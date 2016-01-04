@@ -49,12 +49,19 @@ basic_environment_setup() {
 	sd_disable argent-mce
 	sd_enable argentlive
 
-	# setup avahi
-	#sd_enable avahi-daemon
+	# disabled installers by default
+	sd_disable installer-gui
+	sd_disable installer-text
 
-	# setup printing
+	# do not setup avahi
+	#sd_enable avahi-daemon
+	sd_disable avahi-daemon
+
+	# do not setup printing
 	#sd_enable cups
 	#sd_enable cups-browsed
+	sd_disable cups
+	sd_disable cups-browsed
 
 	# Create a default "games" group so that
 	# the default user will be added to it during
