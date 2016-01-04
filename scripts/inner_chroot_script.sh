@@ -105,6 +105,12 @@ done
 # Disable syslog in systemd, we use journald
 sd_disable syslog-ng
 
+# Disable installer-text by default
+sd_disable installer-text
+
+# Disable installer-gui by default
+sd_disable installer-gui
+
 # setup sudoers
 [ -e /etc/sudoers ] && sed -i '/NOPASSWD: ALL/ s/^# //' /etc/sudoers
 
