@@ -100,7 +100,7 @@ setup_displaymanager() {
 		sd_enable lxdm
 	elif [ -n "$(equo match --installed x11-misc/lightdm-base -qv)" ]; then
 		sd_enable lightdm
-	elif [ -n "$(equo match --instaled x11-misc/slim -qv)" ]; then
+	elif [ -n "$(equo match --installed x11-misc/slim -qv)" ]; then
 		sd_enable slim
 	else
 		sd_enable xdm
