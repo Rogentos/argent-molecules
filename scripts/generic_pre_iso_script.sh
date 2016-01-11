@@ -10,22 +10,6 @@ export ARGENT_MOLECULE_HOME
 boot_dir="${CHROOT_DIR}/boot"
 cdroot_boot_dir="${CDROOT_DIR}/boot"
 
-kernels=( "${boot_dir}"/kernel-* )
-# get the first one and see if it exists
-kernel="${kernels[0]}"
-#if [ ! -f "${kernel}" ]; then
-#        echo "No kernels in ${boot_dir}" >&2
-#        exit 1
-#fi
-
-initramfss=( "${boot_dir}"/initramfs-genkernel-* )
-# get the first one and see if it exists
-initramfs="${initramfss[0]}"
-#if [ ! -f "${initramfs}" ]; then
-#        echo "No initramfs in ${boot_dir}" >&2
-#        exit 1
-#fi
-
 remaster_type="${1}"
 isolinux_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_isolinux.cfg"
 grub_source="${ARGENT_MOLECULE_HOME}/remaster/minimal_grub.cfg"
@@ -33,13 +17,34 @@ isolinux_destination="${CDROOT_DIR}/isolinux/txt.cfg"
 syslinux_destination="${CDROOT_DIR}/syslinux/txt.cfg"
 grub_destination="${CDROOT_DIR}/boot/grub/grub.cfg"
 
-if [ $(uname -m) = "x86_64" ]; then
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc "${cdroot_boot_dir}"/argent || exit 1
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc.igz "${cdroot_boot_dir}"/argent.igz || exit 1
-elif [ $(uname -m) = "i686" ]; then
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86 "${cdroot_boot_dir}"/argent || exit 1
-        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+kernels=( "${boot_dir}"/kernel-* )
+# get the first one and see if it exists
+kernel="${kernels[0]}"
+if [ ! -f "${kernel}" ]; then
+        echo "No kernels in ${boot_dir}" >&2
+        exit 1
 fi
+
+initramfss=( "${boot_dir}"/initramfs-genkernel-* )
+# get the first one and see if it exists
+initramfs="${initramfss[0]}"
+if [ ! -f "${initramfs}" ]; then
+        echo "No initramfs in ${boot_dir}" >&2
+        exit 1
+fi
+
+# we are now copying the installed kernel and initramfs
+
+cp "${kernel}" "${cdroot_boot_dir}"/argent || exit 1
+cp "${initramfs}" "${cdroot_boot_dir}"/argent.igz || exit 1
+
+#if [ $(uname -m) = "x86_64" ]; then
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc "${cdroot_boot_dir}"/argent || exit 1
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+#elif [ $(uname -m) = "i686" ]; then
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86 "${cdroot_boot_dir}"/argent || exit 1
+#        cp "${ARGENT_MOLECULE_HOME}"/boot/argent_kernel/live-brrc_x86.igz "${cdroot_boot_dir}"/argent.igz || exit 1
+#fi
 
 cp "${isolinux_source}" "${isolinux_destination}" || exit 1
 cp "${isolinux_source}" "${syslinux_destination}" || exit 1
