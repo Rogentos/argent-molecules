@@ -90,7 +90,6 @@ else
 fi
 
 # enable cd eject on shutdown/reboot
-sd_enable cdeject
 sd_enable dhcpcd
 sd_enable sshd
 
